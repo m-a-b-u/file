@@ -194,20 +194,27 @@ def compare_scripts(new, old):
 #retrieves list of files given a folder path and the list of valid file extensions to look for
 @logger.catch
 def find_local_scripts(script_dir):
+    # Get the root directory of the repository
+    repo_root = os.getenv('BITBUCKET_CLONE_DIR', '.')
+
+    # Create the absolute path to the script directory
+    abs_script_dir = os.path.join(repo_root, script_dir)
+
     script_list = []
-    logger.info(f"searching for files in {script_dir}")
-    
-    if os.path.isdir(script_dir):
-        logger.info(f"{script_dir} is a directory")
-        files = os.listdir(script_dir)
+    logger.info(f"searching for files in {abs_script_dir}")
+
+    if os.path.isdir(abs_script_dir):
+        logger.info(f"{abs_script_dir} is a directory")
+        files = os.listdir(abs_script_dir)
         logger.info(f"Files in the directory: {files}")
-        script_list = [os.path.join(script_dir, f) for f in files]
+        script_list = [os.path.join(abs_script_dir, f) for f in files]
     else:
-        logger.error(f"{script_dir} is not a directory")
-    
-    logger.info("found these: ", script_dir)
+        logger.error(f"{abs_script_dir} is not a directory")
+
+    logger.info("found these: ", abs_script_dir)
     logger.info(script_list)
     return script_list
+
 
 #strips out the path and extension to get the scripts name
 @logger.catch
