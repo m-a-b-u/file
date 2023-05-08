@@ -197,7 +197,7 @@ def find_local_scripts(script_dir, script_extensions):
     script_list = []
     logger.info(f"searching for files ending in {script_extensions} in {script_dir}")
     for file_type in script_extensions:
-        script_list.extend(glob.glob(f"{script_dir}/**/*.{file_type}", recursive = True))
+        script_list.extend(glob.glob(f"{script_dir}/*", recursive = True))
     logger.info("found these: ", script_dir)
     logger.info(script_list)
     return script_list
