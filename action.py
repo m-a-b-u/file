@@ -215,7 +215,7 @@ def push_scripts():
     logger.info('checking the list of local scripts to upload or create')
     scripts = {}
     #this retrives the full path of the scripts we're trying to sync from github
-    scripts['github'] = find_local_scripts(script_dir, script_extensions)
+    scripts['github'] = find_local_scripts(script_dir)
     #I need to simplify this array down to the just the name of the script, stripping out the path.
     scripts['github_simple_name'] = []
     for script in scripts['github']:
