@@ -193,11 +193,11 @@ def compare_scripts(new, old):
 
 #retrieves list of files given a folder path and the list of valid file extensions to look for
 @logger.catch
-def find_local_scripts(script_dir, script_extensions):
+def find_local_scripts(script_dir):
     script_list = []
-    logger.info(f"searching for files ending in {script_extensions} in {script_dir}")
-    for file_type in script_extensions:
-        script_list.extend(glob.glob(f"{script_dir}/*", recursive = True))
+    logger.info(f"searching for files in {script_dir}")
+    if os.path.isdir(script_dir):
+        script_list = [os.path.join(script_dir, f) for f in os.listdir(script_dir)]
     logger.info("found these: ", script_dir)
     logger.info(script_list)
     return script_list
