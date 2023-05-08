@@ -196,8 +196,15 @@ def compare_scripts(new, old):
 def find_local_scripts(script_dir):
     script_list = []
     logger.info(f"searching for files in {script_dir}")
+    
     if os.path.isdir(script_dir):
-        script_list = [os.path.join(script_dir, f) for f in os.listdir(script_dir)]
+        logger.info(f"{script_dir} is a directory")
+        files = os.listdir(script_dir)
+        logger.info(f"Files in the directory: {files}")
+        script_list = [os.path.join(script_dir, f) for f in files]
+    else:
+        logger.error(f"{script_dir} is not a directory")
+    
     logger.info("found these: ", script_dir)
     logger.info(script_list)
     return script_list
