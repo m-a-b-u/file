@@ -302,8 +302,8 @@ if __name__ == "__main__":
     script_dir = os.getenv('INPUT_SCRIPT_DIR')
     ea_script_dir = os.getenv('INPUT_EA_SCRIPT_DIR')
     workspace_dir = os.getenv('BITBUCKET_PIPE_SHARED_STORAGE_DIR')
-    if script_dir != workspace_dir:
-        script_dir = f"{workspace_dir}/{script_dir}"
+ #   if script_dir != workspace_dir:
+ #       script_dir = f"{workspace_dir}/{script_dir}"
     enable_prefix = os.getenv('INPUT_PREFIX')
     branch = os.getenv('BITBUCKET_BRANCH')
     script_extensions = os.getenv('INPUT_SCRIPT_EXTENSIONS')
